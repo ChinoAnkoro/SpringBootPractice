@@ -18,7 +18,6 @@ import com.example.demo.repository.ContactRepository;
 
 @Controller
 public class ContactController {
-	// @Autowiredアノテーションについては後ほど解説します。
 	@Autowired
 	private ContactRepository contactRepository;
 
