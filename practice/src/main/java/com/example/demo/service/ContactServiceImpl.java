@@ -35,4 +35,8 @@ public class ContactServiceImpl implements ContactService {
 	public List<Contact> searchAll(){
 		return contactRepository.findAll();
 	}
+	
+	public Contact findById(Long id) {
+		return contactRepository.findById(id).get();
+	}
 }
