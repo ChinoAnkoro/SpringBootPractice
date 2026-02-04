@@ -1,4 +1,5 @@
 package com.example.demo.dto;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -23,4 +24,8 @@ public class ContactDTO {
     private String contactType;
 
     private String body;
+    
+    private LocalDateTime updateDate;
+    
+    private LocalDateTime createDate;
 }

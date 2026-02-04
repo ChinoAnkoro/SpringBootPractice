@@ -34,20 +34,23 @@ public class ContactServiceImpl implements ContactService {
 		contactRepository.save(contact);
 	}
 
+	@Override
 	public Contact findById(Long id) {
 		return contactRepository.findById(id).get();
 	}
 
+	@Override
 	public List<ContactDTO> getContactDtoList() {
-		return contactRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
+		return contactRepository.findAll().stream().map(this::contacToDto).collect(Collectors.toList());
 	}
 	
+	@Override
 	public ContactDTO getContactDto(Long id) {
 		Contact contact = contactRepository.findById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
-		return toDto(contact);
+		return contacToDto(contact);
 	}
 
-	private ContactDTO toDto(Contact contact) {
+	private ContactDTO contacToDto(Contact contact) {
 		ContactDTO dto = new ContactDTO();
 		dto.setId(contact.getId());
 		dto.setLastName(contact.getLastName());
