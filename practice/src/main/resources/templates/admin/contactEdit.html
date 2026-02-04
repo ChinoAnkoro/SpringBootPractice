@@ -7,52 +7,58 @@
 </head>
 
 <body>
-	<div class="container">
-		<h1>お問い合わせ編集</h1>
-		<div th:if="${#fields.hasErrors('*')}">
-			<ul>
-				<li th:each="err : ${#fields.errors('*')}" th:text="${err}" class="text-danger"></li>
-			</ul>
-		</div>
 
-		<form th:action="@{/contacts/update}" th:object="${contactDto}" method="post">
+	<div class="container">
+		<h1>お問い合わせ編集</h1>		
+		<form th:action="@{/admin/contacts/{id}/edit(id=${contactId})}" th:object="${contactForm}" method="post">
+
 			<input type="hidden" th:field="*{id}" />
+
 			<div>
 				<label>姓</label>
 				<input type="text" th:field="*{lastName}">
 			</div>
+
 			<div>
 				<label>名</label>
 				<input type="text" th:field="*{firstName}">
 			</div>
+
 			<div>
 				<label>メール</label>
 				<input type="email" th:field="*{email}">
 			</div>
+
 			<div>
 				<label>電話番号</label>
 				<input type="text" th:field="*{phone}">
 			</div>
+
 			<div>
 				<label>郵便番号</label>
 				<input type="text" th:field="*{zipCode}">
 			</div>
+
 			<div>
 				<label>住所</label>
 				<input type="text" th:field="*{address}">
 			</div>
+
 			<div>
 				<label>建物名</label>
 				<input type="text" th:field="*{buildingName}">
 			</div>
+
 			<div>
 				<label>お問い合わせ種別</label>
 				<input type="text" th:field="*{contactType}">
 			</div>
+
 			<div>
 				<label>内容</label>
 				<textarea th:field="*{body}"></textarea>
 			</div>
+
 			<button type="submit">更新</button>
 		</form>
 	</div>

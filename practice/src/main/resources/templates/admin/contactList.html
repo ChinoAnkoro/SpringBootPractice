@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<h1>お問い合わせ一覧</h1>
-
+		<a th:href="@{/contact}" class="btn btn-primary">作成</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -43,14 +43,15 @@
 					<td th:text="${#dates.format(contact.createDate, 'yyyy/MM/dd')}"></td>
 
 					<td>
-						<a th:href="@{/contacts/{id}/edit(id=*{id})}" class="btn btn-secondary">
-							編集
-						</a>
+						<a th:href="@{/admin/contacts/{id}/edit(id=${contact.id})}" class="btn btn-secondary">編集</a>
 					</td>
 					<td>
-						<a th:href="@{/contacts/{id}/detail(id=*{id})}" class="btn btn-secondary">
-							詳細
-						</a>
+						<a th:href="@{/admin/contacts/{id}/detail(id=${contact.id})}" class="btn btn-secondary">詳細</a>
+					</td>
+					<td>
+						<form th:action="@{/admin/contacts/{id}/delete(id=${contact.id})}" method="post" style="display:inline;">
+							<button type="submit" class="btn btn-danger">削除</button>
+						</form>
 					</td>
 				</tr>
 			</tbody>
