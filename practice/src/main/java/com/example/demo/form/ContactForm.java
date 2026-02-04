@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import com.example.demo.entity.Contact;
+
 import lombok.Data;
 
 @Data
@@ -41,4 +43,18 @@ public class ContactForm implements Serializable {
 
 	@NotBlank
 	private String body;
+	
+	public ContactForm() {}
+	
+	public ContactForm(Contact contact) {
+		this.lastName = contact.getLastName();
+		this.firstName = contact.getFirstName();
+		this.email = contact.getEmail();
+		this.phone = contact.getPhone();
+		this.zipCode = contact.getZipCode();
+		this.address = contact.getAddress();
+		this.buildingName = contact.getBuildingName();
+		this.contactType = contact.getContactType();
+		this.body = contact.getBody();
+	}
 }
