@@ -17,7 +17,4 @@ public class AdminController {
 		model.addAttribute("contactList", contactService.getContactDtoList());
 		return "admin/contactList";
 	}
-
-	
-	
 }
