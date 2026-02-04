@@ -7,9 +7,9 @@
 </head>
 
 <body>
-	<td><a th:href="@{/user/{id}(id=*{id})}" class="btn btn-secondary">作成</a></td>
 	<div class="container">
 		<h1>お問い合わせ一覧</h1>
+
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -24,8 +24,10 @@
 					<th>お問い合わせ内容</th>
 					<th>更新日時</th>
 					<th>作成日時</th>
+					<th colspan="2">操作</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<tr th:each="contact : ${contactList}" th:object="${contact}">
 					<td th:text="*{id}"></td>
@@ -38,9 +40,18 @@
 					<td th:text="*{contactType}"></td>
 					<td th:text="*{body}"></td>
 					<td th:text="${#dates.format(contact.updateDate, 'yyyy/MM/dd')}"></td>
-					<td th:text="${#dates.format(contact.createDate, 'yyyy/MM/dd)}"></td>
-					<td><a th:href="@{/contacts/{id}/edit(id=*{id})}" class="btn btn-secondary">編集</a></td>
-					<td><a th:href="@{/contacts/{id}/detail(id=*{id})}" class="btn btn-secondary">詳細</a></td>
+					<td th:text="${#dates.format(contact.createDate, 'yyyy/MM/dd')}"></td>
+
+					<td>
+						<a th:href="@{/contacts/{id}/edit(id=*{id})}" class="btn btn-secondary">
+							編集
+						</a>
+					</td>
+					<td>
+						<a th:href="@{/contacts/{id}/detail(id=*{id})}" class="btn btn-secondary">
+							詳細
+						</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
