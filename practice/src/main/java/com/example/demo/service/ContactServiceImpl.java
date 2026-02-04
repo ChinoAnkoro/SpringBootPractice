@@ -70,16 +70,8 @@ public class ContactServiceImpl implements ContactService {
 		Contact contact = contactRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Contact not found"));
 
-		contact.setLastName(form.getLastName());
-		contact.setFirstName(form.getFirstName());
-		contact.setEmail(form.getEmail());
-		contact.setPhone(form.getPhone());
-		contact.setZipCode(form.getZipCode());
-		contact.setAddress(form.getAddress());
-		contact.setBuildingName(form.getBuildingName());
-		contact.setContactType(form.getContactType());
-		contact.setBody(form.getBody());
-
+		form.updateEntity(contact);
+		
 		contactRepository.save(contact);
 	}
 	

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,7 +9,8 @@
 <body>
 
 	<div class="container">
-		<h1>お問い合わせ編集</h1>		
+		<h1>お問い合わせ編集</h1>
+
 		<form th:action="@{/admin/contacts/{id}/edit(id=${contactId})}" th:object="${contactForm}" method="post">
 
 			<input type="hidden" th:field="*{id}" />
@@ -17,46 +18,78 @@
 			<div>
 				<label>姓</label>
 				<input type="text" th:field="*{lastName}">
+				<div th:if="${#fields.hasErrors('lastName')}" style="color:red">
+					<p th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>名</label>
 				<input type="text" th:field="*{firstName}">
+				<div th:if="${#fields.hasErrors('firstName')}" style="color:red">
+					<p th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>メール</label>
 				<input type="email" th:field="*{email}">
+				<div th:if="${#fields.hasErrors('email')}" style="color:red">
+					<p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>電話番号</label>
 				<input type="text" th:field="*{phone}">
+				<div th:if="${#fields.hasErrors('phone')}" style="color:red">
+					<p th:each="err : ${#fields.errors('phone')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>郵便番号</label>
 				<input type="text" th:field="*{zipCode}">
+				<div th:if="${#fields.hasErrors('zipCode')}" style="color:red">
+					<p th:each="err : ${#fields.errors('zipCode')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>住所</label>
 				<input type="text" th:field="*{address}">
+				<div th:if="${#fields.hasErrors('address')}" style="color:red">
+					<p th:each="err : ${#fields.errors('address')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>建物名</label>
 				<input type="text" th:field="*{buildingName}">
+				<div th:if="${#fields.hasErrors('buildingName')}" style="color:red">
+					<p th:each="err : ${#fields.errors('buildingName')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>お問い合わせ種別</label>
-				<input type="text" th:field="*{contactType}">
+				<select th:field="*{contactType}">
+					<option value="">選択してください</option>
+					<option value="services">サービスに関するお問い合わせ</option>
+					<option value="technicalQuestions">技術的なお問い合わせ</option>
+					<option value="others">その他</option>
+				</select>
+				<div th:if="${#fields.hasErrors('contactType')}" style="color:red">
+					<p th:each="err : ${#fields.errors('contactType')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<div>
 				<label>内容</label>
 				<textarea th:field="*{body}"></textarea>
+				<div th:if="${#fields.hasErrors('body')}" style="color:red">
+					<p th:each="err : ${#fields.errors('body')}" th:text="${err}"></p>
+				</div>
 			</div>
 
 			<button type="submit">更新</button>

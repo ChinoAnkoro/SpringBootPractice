@@ -8,13 +8,14 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.Contact;
 
 import lombok.Data;
 
 @Data
 public class ContactForm implements Serializable {
-	
+
 	private Long id;
 	@NotBlank
 	private String lastName;
@@ -45,9 +46,10 @@ public class ContactForm implements Serializable {
 
 	@NotBlank
 	private String body;
-	
-	public ContactForm() {}
-	
+
+	public ContactForm() {
+	}
+
 	public ContactForm(Contact contact) {
 		this.lastName = contact.getLastName();
 		this.firstName = contact.getFirstName();
@@ -58,5 +60,30 @@ public class ContactForm implements Serializable {
 		this.buildingName = contact.getBuildingName();
 		this.contactType = contact.getContactType();
 		this.body = contact.getBody();
+	}
+
+	public ContactForm(ContactDTO dto) {
+		this.id = dto.getId();
+		this.lastName = dto.getLastName();
+		this.firstName = dto.getFirstName();
+		this.email = dto.getEmail();
+		this.phone = dto.getPhone();
+		this.zipCode = dto.getZipCode();
+		this.address = dto.getAddress();
+		this.buildingName = dto.getBuildingName();
+		this.contactType = dto.getContactType();
+		this.body = dto.getBody();
+	}
+
+	public void updateEntity(Contact contact) {
+		contact.setLastName(this.lastName);
+		contact.setFirstName(this.firstName);
+		contact.setEmail(this.email);
+		contact.setPhone(this.phone);
+		contact.setZipCode(this.zipCode);
+		contact.setAddress(this.address);
+		contact.setBuildingName(this.buildingName);
+		contact.setContactType(this.contactType);
+		contact.setBody(this.body);
 	}
 }

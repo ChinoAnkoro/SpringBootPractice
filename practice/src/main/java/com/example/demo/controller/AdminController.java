@@ -36,18 +36,8 @@ public class AdminController {
 	public String displayEdit(@PathVariable Long id, Model model) {
 		ContactDTO contactDto = contactService.getContactDto(id);
 
-		ContactForm contactForm = new ContactForm();
-		contactForm.setId(contactDto.getId());
-		contactForm.setLastName(contactDto.getLastName());
-		contactForm.setFirstName(contactDto.getFirstName());
-		contactForm.setEmail(contactDto.getEmail());
-		contactForm.setPhone(contactDto.getPhone());
-		contactForm.setZipCode(contactDto.getZipCode());
-		contactForm.setAddress(contactDto.getAddress());
-		contactForm.setBuildingName(contactDto.getBuildingName());
-		contactForm.setContactType(contactDto.getContactType());
-		contactForm.setBody(contactDto.getBody());
-
+		ContactForm contactForm = new ContactForm(contactDto);
+		
 		model.addAttribute("contactForm", contactForm);
 		model.addAttribute("contactId", id);
 
@@ -55,7 +45,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/contacts/{id}/edit")
-	public String update(
+	public String displayUpdate(
 	        @PathVariable Long id,
 	        @Validated @ModelAttribute ContactForm contactForm,
 	        BindingResult result,
@@ -71,7 +61,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/contacts/{id}/delete")
-	public String contactDelete(@PathVariable Long id) {
+	public String displayDelete(@PathVariable Long id) {
 		contactService.deleteById(id);
 		return "redirect:/admin/contacts";
 	}
