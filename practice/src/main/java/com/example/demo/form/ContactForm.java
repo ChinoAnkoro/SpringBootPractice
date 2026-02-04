@@ -17,34 +17,34 @@ import lombok.Data;
 public class ContactForm implements Serializable {
 
 	private Long id;
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String lastName;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String firstName;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	@Email
 	private String email;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	@Size(min = 10, max = 11)
 	private String phone;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	@Pattern(regexp = "[0-9]{3}[-]{0,1}[0-9]{4}")
 	private String zipCode;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String address;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String buildingName;
 
 	@NotEmpty
 	private String contactType;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String body;
 
 	public ContactForm() {
