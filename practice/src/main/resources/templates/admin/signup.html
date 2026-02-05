@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規登録画面</title>
+</head>
+
+<body>
+	<h1>管理者新規登録</h1>
+
+	<form th:action="@{/admin/signup}" th:object="${adminForm}" method="post">
+
+		<div>
+			<label>姓</label>
+			<input type="text" th:field="*{lastName}">
+			<p th:errors="*{lastName}" style="color:red"></p>
+		</div>
+
+		<div>
+			<label>名</label>
+			<input type="text" th:field="*{firstName}">
+			<p th:errors="*{firstName}" style="color:red"></p>
+		</div>
+
+		<div>
+			<label>メールアドレス</label>
+			<input type="email" th:field="*{email}">
+			<p th:errors="*{email}" style="color:red"></p>
+		</div>
+
+		<div>
+			<label>パスワード</label>
+			<input type="password" th:field="*{password}">
+			<p th:errors="*{password}" style="color:red"></p>
+		</div>
+
+		<button type="submit">登録</button>
+	</form>
+</body>
+
+</html>
