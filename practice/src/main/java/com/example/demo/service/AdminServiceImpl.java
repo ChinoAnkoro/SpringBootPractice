@@ -2,33 +2,30 @@ package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.entity.Admin;
-import com.example.demo.form.AdminForm;
+import com.example.demo.dto.AdminDTO;
 import com.example.demo.repository.AdminRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
-    private AdminRepository adminRepository;
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
+	private AdminRepository adminRepository;
 
-    @Override
-    public void saveAdmin(AdminForm adminForm) {
-        Admin admin = new Admin();
 
-        admin.setLastName(adminForm.getLastName());
-        admin.setFirstName(adminForm.getFirstName());
-        admin.setEmail(adminForm.getEmail());
-        admin.setPassword(adminForm.getPassword());
-        
-        String encodedPassword = passwordEncoder.encode(adminForm.getPassword());
-        admin.setPassword(encodedPassword);
+	@Override
+	public void saveAdmin(AdminDTO dto) {
+		Admin admin = dtoToEntity(dto);
+		adminRepository.save(admin);
+	}
 
-        adminRepository.save(admin);
-    }
+	private Admin dtoToEntity(AdminDTO dto) {
+		Admin admin = new Admin();
+		admin.setLastName(admin.getLastName());
+		admin.setFirstName(admin.getFirstName());
+		admin.setEmail(admin.getEmail());
+		admin.setPassword(admin.getPassword());
+		return admin;
+	}
 }

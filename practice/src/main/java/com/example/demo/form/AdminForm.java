@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import com.example.demo.dto.AdminDTO;
 import com.example.demo.entity.Admin;
 
 import lombok.Data;
@@ -30,11 +31,20 @@ public class AdminForm implements Serializable {
 
 	}
 
-	public AdminForm(Admin admin) {
-		this.id = admin.getId();
-		this.lastName = admin.getLastName();
-		this.firstName = admin.getFirstName();
-		this.email = admin.getEmail();
-		this.password = admin.getPassword();
+	public AdminForm(AdminDTO dto) {
+		this.id = dto.getId();
+		this.lastName = dto.getLastName();
+		this.firstName = dto.getFirstName();
+		this.email = dto.getEmail();
+		this.password = dto.getPassword();
+	}
+
+	public AdminDTO formToDto() {
+		AdminDTO dto = new AdminDTO();
+		dto.setLastName(this.lastName);
+		dto.setFirstName(this.firstName);
+		dto.setEmail(this.email);
+		dto.setPassword(this.password);
+		return dto;
 	}
 }

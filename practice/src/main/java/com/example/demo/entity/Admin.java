@@ -15,43 +15,43 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="admins")
+@Table(name = "admins")
 public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
-	
-	@Column(name="last_name")
-	private String lastName;
-	
-	@Column(name="first_name")
-	private String firstName;
-	
-	@Column(name="email")
-	private String email;
-	
-	@Column(name="password")
-	private String password;
-	
-	@Column(name="current_sign_in_at")
-	private LocalDateTime currentSignInAt;
-	
-	@Column(name="created_at" , updatable = false)
-	private LocalDateTime createdAt;
-	
-	@Column(name="updated_at")
-	private LocalDateTime updatedAt;
-	
-	@PrePersist
-    public void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        this.createdAt = now;
-        this.updatedAt = now;
-    }
 
-    @PreUpdate
-    public void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+	@Column(name = "last_name")
+	private String lastName;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "password")
+	private String password;
+
+	@Column(name = "current_sign_in_at")
+	private LocalDateTime currentSignInAt;
+
+	@Column(name = "created_at", updatable = false)
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
+
+	@PrePersist
+	public void onCreate() {
+		LocalDateTime now = LocalDateTime.now();
+		this.createdAt = now;
+		this.updatedAt = now;
+	}
+
+	@PreUpdate
+	public void onUpdate() {
+		this.updatedAt = LocalDateTime.now();
+	}
 }

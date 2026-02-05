@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.form.AdminForm;
 import com.example.demo.service.AdminService;
+import com.example.demo.dto.AdminDTO;
 
 @Controller
 public class AdminRegisterController {
@@ -28,7 +29,8 @@ public class AdminRegisterController {
 		if (result.hasErrors()) {
 			return "admin/signup";
 		}
-		adminService.saveAdmin(adminForm);
+		AdminDTO dto = adminForm.formToDto();
+		adminService.saveAdmin(dto);
 
 		return "redirect:/admin/completion";
 	}
