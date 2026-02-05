@@ -8,37 +8,82 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import com.example.demo.dto.ContactDTO;
+import com.example.demo.entity.Contact;
+
 import lombok.Data;
 
 @Data
 public class ContactForm implements Serializable {
-	@NotBlank
+
+	private Long id;
+	@NotBlank(message = "{NotBlank}")
 	private String lastName;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String firstName;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	@Email
 	private String email;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	@Size(min = 10, max = 11)
 	private String phone;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	@Pattern(regexp = "[0-9]{3}[-]{0,1}[0-9]{4}")
 	private String zipCode;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String address;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String buildingName;
 
 	@NotEmpty
 	private String contactType;
 
-	@NotBlank
+	@NotBlank(message = "{NotBlank}")
 	private String body;
+
+	public ContactForm() {
+	}
+
+	public ContactForm(Contact contact) {
+		this.lastName = contact.getLastName();
+		this.firstName = contact.getFirstName();
+		this.email = contact.getEmail();
+		this.phone = contact.getPhone();
+		this.zipCode = contact.getZipCode();
+		this.address = contact.getAddress();
+		this.buildingName = contact.getBuildingName();
+		this.contactType = contact.getContactType();
+		this.body = contact.getBody();
+	}
+
+	public ContactForm(ContactDTO dto) {
+		this.id = dto.getId();
+		this.lastName = dto.getLastName();
+		this.firstName = dto.getFirstName();
+		this.email = dto.getEmail();
+		this.phone = dto.getPhone();
+		this.zipCode = dto.getZipCode();
+		this.address = dto.getAddress();
+		this.buildingName = dto.getBuildingName();
+		this.contactType = dto.getContactType();
+		this.body = dto.getBody();
+	}
+
+	public void updateEntity(Contact contact) {
+		contact.setLastName(this.lastName);
+		contact.setFirstName(this.firstName);
+		contact.setEmail(this.email);
+		contact.setPhone(this.phone);
+		contact.setZipCode(this.zipCode);
+		contact.setAddress(this.address);
+		contact.setBuildingName(this.buildingName);
+		contact.setContactType(this.contactType);
+		contact.setBody(this.body);
+	}
 }

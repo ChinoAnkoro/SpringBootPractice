@@ -43,7 +43,7 @@ public class ContactServiceImpl implements ContactService {
 	public List<ContactDTO> getContactDtoList() {
 		return contactRepository.findAll().stream().map(this::entityToDto).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public ContactDTO getContactDto(Long id) {
 		Contact contact = contactRepository.findById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
@@ -63,5 +63,20 @@ public class ContactServiceImpl implements ContactService {
 		dto.setContactType(contact.getContactType().toString());
 		dto.setBody(contact.getBody());
 		return dto;
+	}
+
+	@Override
+	public void update(Long id, ContactForm form) {
+		Contact contact = contactRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Contact not found"));
+
+		form.updateEntity(contact);
+		
+		contactRepository.save(contact);
+	}
+	
+	@Override
+	public void deleteById(Long id) {
+	    contactRepository.deleteById(id);
 	}
 }
