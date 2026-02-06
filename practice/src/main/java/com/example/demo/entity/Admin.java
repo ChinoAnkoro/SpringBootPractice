@@ -54,4 +54,8 @@ public class Admin {
 	public void onUpdate() {
 		this.updatedAt = LocalDateTime.now();
 	}
+	
+	public String getAdminName() {
+		return email;
+	}
 }

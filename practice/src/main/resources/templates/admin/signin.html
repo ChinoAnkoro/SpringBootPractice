@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログイン画面</title>
 </head>
 <body>
-
+	<h1>ログイン</h1>
+	<form th:action="@{/admin/login}" method="post">
+		<label>メールアドレス <input type="email" name="email"></label><br>
+		<label>パスワード<input type="password" name="password"></label><br>
+		<button type="submit">ログイン</button>
+	</form>
 </body>
 </html>
